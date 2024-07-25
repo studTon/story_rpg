@@ -16,17 +16,16 @@ def story(name):
 
 
 print("Hello world!")
-
-with open("male.txt") as file:
-    tuple_of_names = [tuple(line.split()) for line in file]
+os.system("clear")
 
 character = input("Please, enter a name:")
 
-i = 0
-while i < len(tuple_of_names):
-    if character == tuple_of_names[i]:
-        print("NAME FOUND!")
-        story(character)
-        break
-    else:
-        i += 1
+f = open("male.txt", "r")
+
+for name in f:
+	if str(name) == str(character):
+		story(character)
+		break
+	else:
+		print("NAME UNFOUND")
+
