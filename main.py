@@ -20,10 +20,11 @@ os.system("clear")
 
 character = input("Please, enter a name:")
 
-f = open("male.txt", "r")
+f = open("male.txt", "r").readlines()
 
 for name in f:
-	if str(name) == str(character):
+	print(name.split())
+	if str(name.split()) == str(character):
 		story(character)
 		break
 	else:
