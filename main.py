@@ -1,4 +1,10 @@
-'''Little story about a character'''
+'''
+
+Little story about a character
+
+Made under MIT License by studTon
+
+'''
 import os
 import time
 
@@ -6,12 +12,13 @@ import time
 
 def story(name):
     """Function that writes chapter one of story."""
-    time.sleep(10.0)
+    os.system("clear")
+    time.sleep(3.0)
     os.system("clear")
     print("""CHAPTER ONE""")
     print("""Everyone was happy in the kingdom of joy.""")
     print('''This kingdom was ruled by '''+ name + '''.''')
-
+    time.sleep(7.0)
 #########################
 
 
@@ -23,10 +30,9 @@ character = input("Please, enter a name:")
 f = open("male.txt", "r").readlines()
 
 for name in f:
-	print(name.split())
-	if str(name.split()) == str(character):
-		story(character)
-		break
-	else:
-		print("NAME UNFOUND")
+    name_processed = name.split()
+    #print(name_processed[0])
+    if str(name_processed[0]) == str(character):
+        story(character)
+        break;
 
