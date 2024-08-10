@@ -19,4 +19,3 @@ for name in f:
     if str(name_processed[0]) == str(character):
         story(character)
         break;
-

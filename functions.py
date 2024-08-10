@@ -6,7 +6,7 @@ def start_app():
     print("Hello world!")
     time.sleep(3.0)
     os.system("clear")
-    print("This is the adventure of:")
+    print("This adventure is called:")
     time.sleep(3.0)
     os.system("clear")
     print("======= STORY RPG =======")
@@ -14,14 +14,20 @@ def start_app():
     os.system("clear")
 
 def story(person):
-    """Function that writes chapter one of story."""
+    """Function that describe the main story."""
     os.system("clear")
     time.sleep(3.0)
     os.system("clear")
-    print("""CHAPTER ONE""")
+    print("""INTRODUCTION""")
     print("""Everyone was happy in the kingdom of joy.""")
     print('''This kingdom was ruled by '''+ person + '''.''')
-    time.sleep(7.0)
+    print("The kingdom of joy was ruled with love and passion to serve other kingdoms.")
+    print("The king was a noble man, and also his court and serfs.")
+    time.sleep(10.0)
+    print("King "+ person +" decided to invite his serfs to a great party.")
+    print("It was a thanks giving party.")
+    print("He choose his...")
+    #create a option switch with return.
 
 def game_start(option):
     while option != 3: 
