@@ -14,6 +14,8 @@ character = input("Please, enter a name:")
 
 f = open("male.txt", "r").readlines()
 
+# I will transform this section below into a function
+
 for name in f:
     name_processed = name.split()
     if str(name_processed[0]) == str(character):

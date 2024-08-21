@@ -3,6 +3,21 @@ import time
 
 def start_app():
     """Function that initialize game"""
+    art = """
+
+        | |_| |_| |                 | |_| |_| |
+        \  .      /                 \ .    .  /
+        \    ,  /                   \    .  /
+        | .   |_   _   _   _   _   _| ,   |
+        |    .| |_| |_| |_| |_| |_| |  .  |
+        | ,   | .    .     .      . |    .|	
+        |.    | .    |+++++++| .    |   . |
+        |   . |   ,  |+++++++|.  . _|__   |
+     	------------------------------------
+						
+				PRESS Q to continue	
+    """
+    os.system("clear")
     print("Hello world!")
     time.sleep(3.0)
     os.system("clear")
@@ -10,6 +25,9 @@ def start_app():
     time.sleep(3.0)
     os.system("clear")
     print("======= STORY RPG =======")
+    print(art)
+    ost = "alex-productions-medieval-and-celtic-music-lands.mp3"
+    os.system("mpg123 -q -o alsa " + ost)
     time.sleep(8.0)
     os.system("clear")
 
