@@ -19,5 +19,6 @@ f = open("male.txt", "r").readlines()
 for name in f:
     name_processed = name.split()
     if str(name_processed[0]) == str(character):
-        story(character)
+        option = story(character);
+        chapter_one(option);
         break;

@@ -37,14 +37,28 @@ def story(person):
     time.sleep(3.0)
     os.system("clear")
     print("""INTRODUCTION""")
-    print("""Everyone was happy in the kingdom of joy.""")
+    print("""Everyone was happy in the Kingdom of Joy.""")
     print('''This kingdom was ruled by '''+ person + '''.''')
-    print("The kingdom of joy was ruled with love and passion to serve other kingdoms.")
+    print("The Kingdom of Joy was ruled with love and passion to serve other kingdoms.")
     print("The king was a noble man, and also his court and serfs.")
     time.sleep(10.0)
     print("King "+ person +" decided to invite his serfs to a great party.")
     print("It was a thanks giving party.")
     print("He choose his...")
+    print("0 - Knight\n1 - Archer \n2 - Infantry \n3 - Crossbowman\n")
+    rpg_character = int(input("Choose an option between 0 and 3: "));
+    return rpg_character
+
+def chapter_one(character):
+    """Chapter one: The adventure begins"""
+    match character:
+        case 0: print("The Knight with his strong power mounted his horse and received a mission.")
+        
+        case 1: print("The Archer with his longbow prepared his bag of arrows to defend from enemies.")
+
+        case 2: print("The Infantry man followed his group of soldiers to defend the fortress.")
+
+        case 3: print("The Crossbowman got his crossbow to attack the foes with his bolts.")
     #create a option switch with return.
 
 def game_start(option):
