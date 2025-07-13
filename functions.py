@@ -1,37 +1,44 @@
 import os
-import time
 import pygame
+import time
 
 character = "king name"
 
 
-def game_menu(option):
+def game_menu():
     """Game menu options"""
-    while option != 3: 
-        if option == 1: #Play
+    playing = True
+    while playing:
+        os.system("clear")
+        print("MAIN MENU\n1 - Play \n2 - How to Play? \n3 - Exit\n")
+        option = int(input("Enter a number from options above: "))
+        if option == 1: # Play game
             os.system("clear")
-            character = input("Enter a male name: ")
+            king = input("Enter a male name: ")
             print("It's a story that begins a long time ago...")
+            time.sleep(5.0)
             f = open("male.txt", "r").readlines()
             for name in f:
                 name_processed = name.split()
                 if str(name_processed[0]) == str(character):
-                    True
-                else:
                     break
-            char_option = intro(character)
-            chapter_one(char_option)
-            return 10
-        elif option == 2: #How to play?
-            print("Under construction")
-            break
-        elif option == 3: #Exit
-            break
-        else:
+            # Story functions interaction
+            intro_option = intro(king)
+            chapter_one(intro_option)
+        elif option == 2: # How to play?
+            os.system("clear")
+            print("Game under construction.\n\n Story RPG is a role-playing-game where you create a story about a medieval quest to defend a kingdom.\n You will face decisions with consequences each time you see the story.")
+            input("\n Press Enter to continue to main menu...")
+        elif option == 3: # Exit
+            os.system("clear")
+            playing = False
+        else: # Invalid option
+            os.system("clear")
             print("WRONG OPTION. Run again\n")
-            break;
+            input("Press Enter to continue...")
 
 def start_game():
+    """Game brief introduction"""
     pygame.mixer.init()
     ost = "alex-productions-medieval-and-celtic-music-lands.mp3"
     pygame.mixer.music.load(ost)
@@ -48,6 +55,8 @@ def start_game():
         |.    | .    |+++++++| .    |   . |
         |   . |   ,  |+++++++|.  . _|__   |
      	------------------------------------
+    =============================================
+    =============================================
 							
     """
     os.system("clear")
@@ -59,25 +68,27 @@ def start_game():
     os.system("clear")
     print("                ======= STORY RPG =======")
     print(art)
+    time.sleep(3.0)
     input("Press Enter to continue...")
     os.system("clear")
-    print("MAIN MENU\n1 - Play \n2 - How to Play? \n3 - Exit\n")
-    menu_option = int(input("Enter a number from options above: "))
-    game_menu(menu_option)
+    game_menu()
 
 
-def intro(person):
+def intro(name):
     """Describe a brief story of the kingdom."""
     os.system("clear")
     input("Press Enter to continue...")
     os.system("clear")
+    print("\n")
     print("""INTRODUCTION""")
+    print("\n")
     print("""Everyone was happy in the Kingdom of Joy.""")
-    print('''This kingdom was ruled by '''+ person + '''.''')
+    print('''This kingdom was ruled by '''+ name + '''.''')
     print("The Kingdom of Joy was ruled with love and passion to serve other kingdoms.")
     print("The king was a noble man, and also his court and serfs.")
     input("Press Enter to continue...")
-    print("King "+ person +" decided to invite his serfs to a great party.")
+    os.system("clear")
+    print("King "+ name +" decided to invite his serfs to a great party.")
     print("It was a thanks giving party.")
     print("He choose his...")
     print("0 - Knight\n1 - Archer \n2 - Infantry \n3 - Crossbowman\n")
