@@ -1,7 +1,12 @@
 import os
 import time
+import pygame
 
 def start_app():
+    pygame.mixer.init()
+    ost = "alex-productions-medieval-and-celtic-music-lands.mp3"
+    pygame.mixer.music.load(ost)
+    pygame.mixer.music.play(0,0,1)
     """Function that initialize game"""
     art = """
 
@@ -14,8 +19,7 @@ def start_app():
         |.    | .    |+++++++| .    |   . |
         |   . |   ,  |+++++++|.  . _|__   |
      	------------------------------------
-						
-				PRESS Q to continue	
+							
     """
     os.system("clear")
     print("Hello world!")
@@ -24,10 +28,8 @@ def start_app():
     print("This adventure is called:")
     time.sleep(3.0)
     os.system("clear")
-    print("======= STORY RPG =======")
+    print("                ======= STORY RPG =======")
     print(art)
-    ost = "alex-productions-medieval-and-celtic-music-lands.mp3"
-    os.system("mpg123 -q -o alsa " + ost)
     time.sleep(8.0)
     os.system("clear")
 
@@ -51,7 +53,7 @@ def story(person):
 
 def chapter_one(character):
     """Chapter one: The adventure begins"""
-    match character:
+    match character: #create a option switch with return.
         case 0: print("The Knight with his strong power mounted his horse and received a mission.")
         
         case 1: print("The Archer with his longbow prepared his bag of arrows to defend from enemies.")
@@ -59,7 +61,7 @@ def chapter_one(character):
         case 2: print("The Infantry man followed his group of soldiers to defend the fortress.")
 
         case 3: print("The Crossbowman got his crossbow to attack the foes with his bolts.")
-    #create a option switch with return.
+    input("Press Enter to continue...")
 
 def game_start(option):
     while option != 3: 

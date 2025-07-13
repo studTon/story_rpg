@@ -1,13 +1,17 @@
 #!/bin/bash
 
-# Install required library
-PACKAGE_NAME="mpg123" # Replace with the actual package name (e.g., libssl-dev, libcurl4-openssl-dev)
+# Check required game library installation
+if ! command -v python3 &> /dev/null; then
+    echo "Error: python3 is not installed or not in PATH."
+    exit 1
+fi
 
-if dpkg -l | grep -q "$PACKAGE_NAME"; then
-    echo "Package '$PACKAGE_NAME' is installed."
+# Attempt to import pygame and capture the exit status
+if python3 -c "import pygame" &> /dev/null; then
+    echo "Pygame is installed and accessible."
 else
-    echo "Package '$PACKAGE_NAME' is NOT installed."
-    sudo apt-get install mpg123
+    echo "Pygame is NOT installed or not accessible for python3."
+    echo "You might need to install it: sudo apt-get install python3-pygame"
 fi
 
 # Path to Python program
