@@ -3,9 +3,9 @@ import pygame
 import time
 
 character = "king name"
-ost1 = "Majestic Hills.mp3"
-ost2 = "alex-productions-medieval-and-celtic-music-lands.mp3"
-ost3 = "Heroic Age.mp3"
+ost1 = "ost/Majestic Hills.mp3"
+ost2 = "ost/alex-productions-medieval-and-celtic-music-lands.mp3"
+ost3 = "ost/Heroic Age.mp3"
 
 def start_game():
     """Game startup"""
