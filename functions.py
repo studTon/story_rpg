@@ -39,20 +39,8 @@ def game_menu():
             pygame.mixer.stop()
             pygame.mixer.music.load(ost3)
             pygame.mixer.music.play(0,0,1)
-            king = input("Enter a male name: ")
-            print("It's a story that begins a long time ago...")
-            input("Press Enter to continue...")
-            os.system("clear")
-            time.sleep(5.0)
-            f = open("male.txt", "r").readlines()
-            for name in f:
-                name_processed = name.split()
-                if str(name_processed[0]) == str(character):
-                    break
-            # Story functions interaction
-            intro_option = intro(king)
-            choice_one = chapter_one(intro_option)
-            choice_three = chapter_two(choice_one)
+            king = define_king()
+            manage_story(king)
         elif option == 2: # How to play?
             os.system("clear")
             print("Game under construction.\n\n Story RPG is a role-playing-game where you create a story about a medieval quest to defend a kingdom.\n You will face decisions with consequences each time you see the story.\n All the gameplay is made on command-line interface.")
@@ -68,6 +56,26 @@ def game_menu():
             os.system("clear")
             print("WRONG OPTION. Run again\n")
             input("Press Enter to continue...")
+
+def define_king():
+    """Write a name for the king"""
+    king = input("Enter a male name: ")
+    print("It's a story that begins a long time ago...")
+    input("Press Enter to continue...")
+    os.system("clear")
+    time.sleep(5.0)
+    f = open("male.txt", "r").readlines()
+    for name in f:
+        name_processed = name.split()
+        if str(name_processed[0]) == str(character):
+            break
+    return king
+
+def manage_story(king_name):
+    """Manage interaction between chapters"""
+    intro_option = intro(king_name)
+    choice_one = chapter_one(intro_option)
+    choice_three = chapter_two(choice_one)
 
 def intro(name):
     """Intro: Describe a brief story of the kingdom."""
