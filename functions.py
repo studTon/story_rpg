@@ -1,11 +1,26 @@
 import os
 import pygame
+import re
 import time
 
 character = "king name"
 ost1 = "ost/Majestic Hills.mp3"
 ost2 = "ost/alex-productions-medieval-and-celtic-music-lands.mp3"
 ost3 = "ost/Heroic Age.mp3"
+art = """
+
+          |-|__|-|            |-|__|-|
+          |      |            |      |
+          |      |            |      |
+          | ------------------------ |
+          | ________________________ |
+          ||                        ||
+          ||          ___           ||
+          ||         |   |          ||
+          ||         |   |          ||
+==================================================
+
+"""
 
 def start_game():
     """Game startup"""
@@ -17,9 +32,10 @@ def start_game():
     input("Press Enter to continue...")
     os.system("clear")
     print("This adventure game is called:")
-    time.sleep(3.0)
+    time.sleep(1.5)
     os.system("clear")
-    print("                ======= STORY RPG =======")
+    print("            ======= STORY RPG =======")
+    print(art)
     time.sleep(3.0)
     input("Press Enter to continue...")
     os.system("clear")
@@ -59,17 +75,20 @@ def game_menu():
 
 def define_king():
     """Write a name for the king"""
-    king = input("Enter a male name: ")
     print("It's a story that begins a long time ago...")
-    input("Press Enter to continue...")
-    os.system("clear")
-    time.sleep(5.0)
-    f = open("male.txt", "r").readlines()
-    for name in f:
-        name_processed = name.split()
-        if str(name_processed[0]) == str(character):
-            break
-    return king
+    time.sleep(2.5)
+    check = False
+    while check == False:
+        os.system("clear")
+        king = input("Enter a valid name for the king.\nKing's name: ")
+        match = re.search(r'^(?:[A-Z][a-z]+[-\s]?)+$', king)
+        # If-statement after search() tests if it succeeded
+        if match:
+            check = True
+            return king 
+        else:
+            print('Input a valid name.')
+            time.sleep(2.5)
 
 def manage_story(king_name):
     """Manage interaction between chapters"""
