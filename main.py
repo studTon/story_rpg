@@ -1,8 +1,10 @@
 '''
 
-Little rpg story about a character
+Little rpg story about a medieval random character fighting enemy forces.
 
-Made under MIT License by studTon
+It uses command-line interface.
+
+Made under MIT License by studTon.
 
 '''
 
