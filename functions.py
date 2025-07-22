@@ -170,6 +170,9 @@ def chapter_one(character):
             input("Press Enter to continue...")
             return 3
 
+    print("The enemy general said with loud voice: \"The kingdom of Numberland has one thing to say to you all. Please, avoid any conflict.\"\n")
+    print("\"It's easy to you surrender to our great army or you will gonna face the siege. Think wisely, I recommend...\"\n")
+    input("Press Enter to continue...")
 def chapter_two(choice):
     """Chapter two: The enemy arrives to siege the fortress."""
     os.system("clear")
