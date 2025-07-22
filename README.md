@@ -22,9 +22,11 @@ http://creativecommons.org/licenses/by/4.0/
 ## Libraries
 python os
 
-python time
-
 python pygame
 
+python regex
+
+python time
 ---
+## License
 Under MIT License
