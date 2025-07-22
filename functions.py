@@ -3,17 +3,42 @@ import pygame
 import time
 
 character = "king name"
+ost1 = "Majestic Hills.mp3"
+ost2 = "alex-productions-medieval-and-celtic-music-lands.mp3"
+ost3 = "Heroic Age.mp3"
 
+def start_game():
+    """Game startup"""
+    pygame.mixer.init()
+    pygame.mixer.music.load(ost1)
+    pygame.mixer.music.play(0,0,1)
+    os.system("clear")
+    print("Hello world!\n")
+    input("Press Enter to continue...")
+    os.system("clear")
+    print("This adventure game is called:")
+    time.sleep(3.0)
+    os.system("clear")
+    print("                ======= STORY RPG =======")
+    time.sleep(3.0)
+    input("Press Enter to continue...")
+    os.system("clear")
+    game_menu()
 
 def game_menu():
     """Game menu options"""
     playing = True
     while playing:
+        pygame.mixer.music.load(ost2)
+        pygame.mixer.music.play(0,0,1)
         os.system("clear")
-        print("MAIN MENU\n1 - Play \n2 - How to Play? \n3 - Exit\n")
+        print("MAIN MENU\n1 - Play \n2 - How to Play? \n3 - Credits\n4 - Exit\n")
         option = int(input("Enter a number from options above: "))
         if option == 1: # Play game
             os.system("clear")
+            pygame.mixer.stop()
+            pygame.mixer.music.load(ost3)
+            pygame.mixer.music.play(0,0,1)
             king = input("Enter a male name: ")
             print("It's a story that begins a long time ago...")
             input("Press Enter to continue...")
@@ -32,33 +57,17 @@ def game_menu():
             os.system("clear")
             print("Game under construction.\n\n Story RPG is a role-playing-game where you create a story about a medieval quest to defend a kingdom.\n You will face decisions with consequences each time you see the story.\n All the gameplay is made on command-line interface.")
             input("\n Press Enter to continue to main menu...")
-        elif option == 3: # Exit
+        elif option == 3: # Game credits
+            os.system("clear")
+            print("Design: studTon\nSoundtrack by: Alex-Productions & Kevin MacLeod\nGame story: studTon")
+            input("\n Press Enter to continue to main menu...")
+        elif option == 4: # Exit
             os.system("clear")
             playing = False
         else: # Invalid option
             os.system("clear")
             print("WRONG OPTION. Run again\n")
             input("Press Enter to continue...")
-
-def start_game():
-    """Game startup"""
-    ost = "alex-productions-medieval-and-celtic-music-lands.mp3"
-    pygame.mixer.init()
-    pygame.mixer.music.load(ost)
-    pygame.mixer.music.play(0,0,1)
-    os.system("clear")
-    print("Hello world!\n")
-    input("Press Enter to continue...")
-    os.system("clear")
-    print("This adventure game is called:")
-    time.sleep(3.0)
-    os.system("clear")
-    print("                ======= STORY RPG =======")
-    time.sleep(3.0)
-    input("Press Enter to continue...")
-    os.system("clear")
-    game_menu()
-
 
 def intro(name):
     """Intro: Describe a brief story of the kingdom."""
