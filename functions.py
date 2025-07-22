@@ -107,13 +107,21 @@ def intro(name):
     print("The Kingdom of Joy was ruled with love and passion to serve other kingdoms.")
     print("The king was a noble man, and also his court and serfs.")
     input("Press Enter to continue...")
+    selecting = False
+    while selecting == False:
+        os.system("clear")
+        print("King "+ name +" decided to invite his serfs to a great party.")
+        print("It was a thanks giving party.")
+        print("He choose his...")
+        print("0 - Knight\n1 - Archer \n2 - Infantry \n3 - Crossbowman\n")
+        rpg_character = int(input("Choose an option between 0 and 3: "));
+        print("")
+        if rpg_character >= 0 and rpg_character <= 3:
+            selecting = True
+        else:
+            print("Select a valid option.\n")
+            input("Press Enter to continue...")
     os.system("clear")
-    print("King "+ name +" decided to invite his serfs to a great party.")
-    print("It was a thanks giving party.")
-    print("He choose his...")
-    print("0 - Knight\n1 - Archer \n2 - Infantry \n3 - Crossbowman\n")
-    rpg_character = int(input("Choose an option between 0 and 3: "));
-    print("")
     print("King " + name + " was really proud of his soldiers, because they serve him with honor.\n")
     print("He asked: \"My noble serf, we will face an attack suddenly, please could you help me with this mission?\"")
     match rpg_character:
