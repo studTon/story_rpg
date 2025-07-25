@@ -4,6 +4,9 @@
 ## Description
 It is a simple Role-Playing-Game that shows the power of simple Python3 libraries and file management.
 
+## How to play the game?
+Unzip the compact folder and execute the shell script run.sh on game folder.
+
 ## Soundtrack
 
 "Majestic Hills" Kevin MacLeod (incompetech.com)
