@@ -20,6 +20,7 @@ Licensed under Creative Commons: By Attribution 4.0 License
 http://creativecommons.org/licenses/by/4.0/
 
 ## Libraries
+
 python os
 
 python pygame
@@ -27,6 +28,7 @@ python pygame
 python regex
 
 python time
+
 ---
 ## License
 Under MIT License
