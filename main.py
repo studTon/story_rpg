@@ -10,4 +10,5 @@ Made under MIT License by studTon.
 
 from functions import *
 
+set_console_size()
 start_game()

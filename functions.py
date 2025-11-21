@@ -14,6 +14,14 @@ def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
+def set_console_size(width=100, height=30):
+    """Sets the console size."""
+    if os.name == 'nt':
+        os.system(f'mode con: cols={width} lines={height}')
+    else:
+        sys.stdout.write(f"\x1b[8;{height};{width}t")
+
+
 def play_music(track, loops=0, start=0.0, fade_ms=0):
     """Load and play a music track."""
     try:
@@ -261,9 +269,10 @@ def chapter_two():
     slow_print("Suddenly, three army bands arrived on the top of a hill. They play a trumpet to announces the fight.\n")
     slow_print("")
     input("Press Enter to continue...")
+    clear_screen()
 
 def game_over():
     """End the game"""
     clear_screen()
-    slow_print("GAME OVER..")
+    slow_print("GAME OVER...")
     input("Press Enter to continue...")
