@@ -92,7 +92,7 @@ def game_menu():
         elif option == 3:  # Game credits
             clear_screen()
             print(
-                "Design: studTon\nSoundtrack by: Alex-Productions & Kevin MacLeod\nGame story: studTon")
+                "Design: studTon\nSoundtrack by: Alex-Productions, Kevin MacLeod, mokasza & Freesound\nGame story: studTon")
             input("\n Press Enter to continue to main menu...")
         elif option == 4:  # Exit
             clear_screen()
