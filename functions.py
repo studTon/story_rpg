@@ -5,13 +5,33 @@ import re
 import time
 import sys
 
-from config import ART, OST1, OST2, OST3
+from config import *
 
 
 
 def clear_screen():
     """Clears the console screen based on OS."""
     os.system('cls' if os.name == 'nt' else 'clear')
+
+
+def play_music(track, loops=0, start=0.0, fade_ms=0):
+    """Load and play a music track."""
+    try:
+        pygame.mixer.music.load(track)
+        pygame.mixer.music.play(loops, start, fade_ms)
+    except pygame.error as e:
+        print(f"Error playing music: {e}")
+
+
+def play_sound(track):
+    """Load and play a sound effect."""
+    if track == SFX3:
+        pygame.mixer.music.stop()
+    try:
+        sound = pygame.mixer.Sound(track)
+        sound.play()
+    except pygame.error as e:
+        print(f"Error playing sound: {e}")
 
 
 def slow_print(text, delay=0.03):
@@ -26,8 +46,7 @@ def slow_print(text, delay=0.03):
 def start_game():
     """Game startup"""
     pygame.mixer.init()
-    pygame.mixer.music.load(OST1)
-    pygame.mixer.music.play(0, 0, 0)
+    play_music(OST1)
     clear_screen()
     slow_print("Hello world!\n")
     input("Press Enter to continue...")
@@ -47,16 +66,15 @@ def game_menu():
     """Game menu options"""
     playing = True
     while playing:
-        pygame.mixer.music.load(OST2)
-        pygame.mixer.music.play(0, 0, 0)
+        play_music(OST2)
         clear_screen()
         print("MAIN MENU\n=======*=======*=======\n1 - Play \n2 - How to Play? \n3 - Credits\n4 - Exit\n")
         option = int(input("Enter a number from options above: "))
         if option == 1:  # Play game
             clear_screen()
-            pygame.mixer.stop()
-            pygame.mixer.music.load(OST3)
-            pygame.mixer.music.play(0, 0, 0)
+            clear_screen()
+            pygame.mixer.music.stop()
+            play_music(OST3)
             king = define_king()
             manage_story(king)
         elif option == 2:  # How to play?
@@ -99,7 +117,10 @@ def manage_story(king_name):
     """Manage interaction between chapters"""
     intro_option = intro(king_name)
     choice_one = chapter_one(intro_option)
-    choice_three = chapter_two(choice_one)
+    if choice_one:
+        chapter_two()
+    else:
+        game_over()
 
 
 def intro(name):
@@ -152,12 +173,12 @@ def intro(name):
 
 def chapter_one(character):
     """Chapter one: The adventure begins"""
+    play_sound(SFX3)
     clear_screen()
     slow_print("""CHAPTER ONE""")
     slow_print("")
     match character:
         case 0:
-
             character = "knight"
             slow_print(
                 "The Knight with his strong power mounted his horse and received his mission.\n")
@@ -187,6 +208,7 @@ def chapter_one(character):
             slow_print("Every time he saw a strange movement on the forest nearby, the bow can be used for an accurated shot.\n")
             input("Press Enter to continue...")
 
+    clear_screen()
     slow_print("The enemy general said with loud voice: \"The kingdom of Numberland has one thing to say to you all. Please, avoid any conflict.\"\n")
     slow_print("\"It's easy to you surrender to our great army. Will you gonna face the siege? Think wisely, I recommend...\"\n")
 
@@ -208,26 +230,40 @@ def chapter_one(character):
     elif decision == 1:
         difficulty = 10
     else:
-        difficulty = 12  # High risk
+        difficulty = 12  
 
     # Show Results
     slow_print(f"\n[BATTLE] Difficulty: {difficulty}")
     slow_print(f"[BATTLE] You rolled: {roll} + {luck} (Luck) = {total_score}")
 
     # Determine Outcome
+
     if total_score >= difficulty:
-        slow_print("VICTORY! Your strategy was successful.")
+        play_sound(SFX2)
+        slow_print("VICTORY! Your strategy was successful. And you get some time to go back to the castle.")
+        result = True
     else:
+        play_sound(SFX1)
         slow_print("DEFEAT... The enemy overwhelmed you.")
+        result = False
 
     input("Press Enter to continue...")
+    pygame.mixer.stop()
+    return result
 
 
-def chapter_two(choice):
+def chapter_two():
     """Chapter two: The enemy arrives to siege the fortress."""
+    play_music(OST3)
     clear_screen()
     slow_print("""CHAPTER TWO""")
     slow_print("The sunset was on the horizon and we could see the wind over the trees.\n")
     slow_print("Suddenly, three army bands arrived on the top of a hill. They play a trumpet to announces the fight.\n")
     slow_print("")
+    input("Press Enter to continue...")
+
+def game_over():
+    """End the game"""
+    clear_screen()
+    slow_print("GAME OVER..")
     input("Press Enter to continue...")
