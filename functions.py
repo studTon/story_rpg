@@ -27,7 +27,7 @@ def play_music(track, loops=0, start=0.0, fade_ms=0):
     try:
         pygame.mixer.music.load(track)
         pygame.mixer.music.play(loops, start, fade_ms)
-    except pygame.error as e:
+    except Exception as e:
         print(f"Error playing music: {e}")
 
 
@@ -38,7 +38,7 @@ def play_sound(track):
     try:
         sound = pygame.mixer.Sound(track)
         sound.play()
-    except pygame.error as e:
+    except Exception as e:
         print(f"Error playing sound: {e}")
 
 
@@ -87,7 +87,7 @@ def game_menu():
             manage_story(king)
         elif option == 2:  # How to play?
             clear_screen()
-            print("Game under construction.\n\n Story RPG is a role-playing-game where you create a story about a medieval quest to defend a kingdom.\n You will face decisions with consequences each time you see the story.\n All the gameplay is made on command-line interface.")
+            print("Game under construction.\n\n Story RPG is a role-playing-game where you create a story about a medieval quest to defend a kingdom.\n You will face decisions with consequences each time you see chapters rolling.\n All the gameplay is on command-line interface.\nFeel free to enjoy each character interaction with the scenario you will face.")
             input("\n Press Enter to continue to main menu...")
         elif option == 3:  # Game credits
             clear_screen()
