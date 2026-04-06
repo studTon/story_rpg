@@ -10,12 +10,23 @@ import pygame
 from config import *
 
 
+def resource_path(relative_path):
+    """Get absolute path to resource, works for dev and for PyInstaller external assets."""
+    if getattr(sys, 'frozen', False):
+        # Path to the directory where the binary executable is located
+        base_path = os.path.dirname(sys.executable)
+    else:
+        # Path to the directory where the script is located
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
+
 def clear_screen():
     """Clears the console screen based on OS."""
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-def set_console_size(width=200, height=50):
+def set_console_size(width=80, height=30):
     """Sets the console size."""
     if os.name == 'nt':
         os.system(f'mode con: cols={width} lines={height}')
@@ -55,6 +66,14 @@ def slow_print(text, delay=0.03):
 def start_game():
     """Game startup"""
     pygame.mixer.init()
+    
+    # Set the Window Icon
+    try:
+        icon_img = pygame.image.load(resource_path(ICON))
+        pygame.display.set_icon(icon_img)
+    except Exception:
+        pass
+        
     play_music(OST1)
     clear_screen()
     slow_print("Hello world!\n")

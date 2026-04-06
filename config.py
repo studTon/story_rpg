@@ -13,6 +13,9 @@ SFX1 = "sfx/269190__mickleness__game-lose.mp3" ## Battle lost
 SFX2 = "sfx/810754__mokasza__level-up-02.mp3" ## Battle won
 SFX3 = "sfx/646460__g-14__medieval-march-mp3.mp3" ## Battle start
 
+# Icon
+ICON = "icon.png"
+
 # ASCII Art
 ART = """
 

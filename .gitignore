@@ -1,1 +1,6 @@
 __pycache__/functions.cpython-313.pyc
+/.venv
+/dist
+/build
+run.sh
+story_rpg.spec
