@@ -15,7 +15,7 @@ def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-def set_console_size(width=100, height=30):
+def set_console_size(width=200, height=50):
     """Sets the console size."""
     if os.name == 'nt':
         os.system(f'mode con: cols={width} lines={height}')
