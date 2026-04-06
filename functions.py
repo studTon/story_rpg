@@ -1,12 +1,13 @@
+"""Functions used inside the gameplay."""
 import os
-import pygame
 import random
 import re
-import time
 import sys
+import time
+
+import pygame
 
 from config import *
-
 
 
 def clear_screen():
@@ -108,7 +109,7 @@ def define_king():
     slow_print("It's a story that begins a long time ago...")
     time.sleep(2.5)
     check = False
-    while check == False:
+    while check is False:
         clear_screen()
         king = input("Enter a valid name for the king.\nKing's name: ")
         match = re.search(r'^(?:[A-Z][a-z]+[-\s]?)+$', king)
@@ -123,11 +124,27 @@ def define_king():
 
 def manage_story(king_name):
     """Manage interaction between chapters"""
+    total_accumulated_score = 0
     intro_option = intro(king_name)
-    choice_one = chapter_one(intro_option)
-    if choice_one:
-        chapter_two()
+    success, score, character = chapter_one(intro_option)
+    if success:
+        total_accumulated_score += score
+        clear_screen()
+        slow_print(f"Your total score now is: {total_accumulated_score} points\n")
+        slow_print("Congratulations!\n")
+        input("Press Enter to continue...")
+        clear_screen()
+        success, score, character = chapter_two(character)
+        if success:
+            total_accumulated_score += score
+            clear_screen()
+            slow_print(f"You have won with a total of {total_accumulated_score} points\n")
+            slow_print("You're in lucky!\n")
+            input("Press Enter to continue...")
     else:
+        clear_screen()
+        slow_print(f"You have made {total_accumulated_score} points.\n")
+        slow_print("But you lose.\n")
         game_over()
 
 
@@ -139,13 +156,15 @@ def intro(name):
     slow_print("\n")
     slow_print("""Everyone was happy in the Kingdom of Joy.""")
     slow_print(f"This kingdom was ruled by {name}.")
-    slow_print("The Kingdom of Joy was ruled with love and passion to serve other kingdoms.")
+    slow_print(
+        "The Kingdom of Joy was ruled with love and passion to serve other kingdoms.")
     slow_print("The king was a noble man, and also his court and serfs.")
     input("Press Enter to continue...")
     selecting = False
     while selecting == False:
         clear_screen()
-        slow_print(f"King {name} decided to invite his serfs to a great party.")
+        slow_print(
+            f"King {name} decided to invite his serfs to a great party.")
         slow_print("It was a thanks giving party.")
         slow_print("He choose his...")
         slow_print("0 - Knight\n1 - Archer \n2 - Infantry \n3 - Crossbowman\n")
@@ -157,8 +176,10 @@ def intro(name):
             slow_print("Select a valid option.\n")
             input("Press Enter to continue...")
     clear_screen()
-    slow_print(f"King {name} was really proud of his soldiers, because they serve him with honor.\n")
-    slow_print("He asked: \"My noble serf, we will face an attack suddenly, please could you help me with this mission?\"")
+    slow_print(
+        f"King {name} was really proud of his soldiers, because they serve him with honor.\n")
+    slow_print(
+        "He asked: \"My noble serf, we will face an attack suddenly, please could you help me with this mission?\"")
     match rpg_character:
         case 0:
             slow_print(
@@ -178,7 +199,6 @@ def intro(name):
             input("Press Enter to continue...")
     return rpg_character
 
-
 def chapter_one(character):
     """Chapter one: The adventure begins"""
     play_sound(SFX3)
@@ -190,7 +210,8 @@ def chapter_one(character):
             character = "knight"
             slow_print(
                 "The Knight with his strong power mounted his horse and received his mission.\n")
-            slow_print("He took the mission with joy, and is brave enough to face the enemy of the kingdom without mercy.\n")
+            slow_print(
+                "He took the mission with joy, and is brave enough to face the enemy of the kingdom without mercy.\n")
             input("Press Enter to continue...")
 
         case 1:
@@ -207,13 +228,16 @@ def chapter_one(character):
                 "The Infantry man followed his group of soldiers to defend the fortress.\n")
             slow_print(
                 "The infantry group get prepared to fight behind the walls of the fortress.\n")
-            slow_print("They scream with a loud voice: LONG LIVE THE KINGDOM!\n")
+            slow_print(
+                "They scream with a loud voice: LONG LIVE THE KINGDOM!\n")
             input("Press Enter to continue...")
 
         case 3:
             character = "crossbowman"
-            slow_print("The Crossbowman got his crossbow to attack the foes with his bolts.\n")
-            slow_print("Every time he saw a strange movement on the forest nearby, the bow can be used for an accurated shot.\n")
+            slow_print(
+                "The Crossbowman got his crossbow to attack the foes with his bolts.\n")
+            slow_print(
+                "Every time he saw a strange movement on the forest nearby, the bow can be used for an accurated shot.\n")
             input("Press Enter to continue...")
 
     clear_screen()
@@ -238,7 +262,7 @@ def chapter_one(character):
     elif decision == 1:
         difficulty = 10
     else:
-        difficulty = 12  
+        difficulty = 12
 
     # Show Results
     slow_print(f"\n[BATTLE] Difficulty: {difficulty}")
@@ -248,7 +272,8 @@ def chapter_one(character):
 
     if total_score >= difficulty:
         play_sound(SFX2)
-        slow_print("VICTORY! Your strategy was successful. And you get some time to go back to the castle.")
+        slow_print(
+            "VICTORY! Your strategy was successful. And you get some time to go back to the castle.")
         result = True
     else:
         play_sound(SFX1)
@@ -257,19 +282,62 @@ def chapter_one(character):
 
     input("Press Enter to continue...")
     pygame.mixer.stop()
-    return result
+    return result, total_score, character
 
 
-def chapter_two():
+def chapter_two(character):
     """Chapter two: The enemy arrives to siege the fortress."""
     play_music(OST3)
     clear_screen()
     slow_print("""CHAPTER TWO""")
-    slow_print("The sunset was on the horizon and we could see the wind over the trees.\n")
-    slow_print("Suddenly, three army bands arrived on the top of a hill. They play a trumpet to announces the fight.\n")
-    slow_print("")
+    slow_print(
+        "The sunset was on the horizon and we could see the wind over the trees.\n")
+    slow_print(
+        "Suddenly, three army bands arrived on the top of a hill. They play a trumpet to announces the fight.\n")
+    slow_print(
+        "\"The Kingdom of Numberland shall never surrender to your fortress and your garrison troops.\n")
+    slow_print("Surrender or DIE!\n")
     input("Press Enter to continue...")
     clear_screen()
+    slow_print(f"The {character} begin to assault into: \n")
+
+    print("0 - Siege units (Low Risk)\n")
+    print("1 - Archers (Medium Risk)\n")
+    print("2 - Cavalry (High Risk)\n")
+
+    decision = int(input("Choose an option between 0 and 2: "))
+
+    # Generate Stats
+    luck = random.randint(1, 5)
+    roll = random.randint(1, 10)
+    total_score = roll + luck
+
+    # Set Difficulty based on choice
+    if decision == 0:
+        difficulty = 7
+    elif decision == 1:
+        difficulty = 10
+    else:
+        difficulty = 14
+
+    # Show Results
+    slow_print(f"\n[BATTLE] Difficulty: {difficulty}")
+    slow_print(f"[BATTLE] You rolled: {roll} + {luck} (Luck) = {total_score}")
+
+    if total_score >= difficulty:
+        play_sound(SFX2)
+        slow_print(
+            "VICTORY! Your strategy was successful. And you get some time to go back to the castle.")
+        result = True
+    else:
+        play_sound(SFX1)
+        slow_print("DEFEAT... The enemy overwhelmed you.")
+        result = False
+
+    input("Press Enter to continue...")
+    pygame.mixer.stop()
+    return result, total_score, character
+
 
 def game_over():
     """End the game"""
