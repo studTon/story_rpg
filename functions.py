@@ -1,4 +1,5 @@
 """Functions used inside the gameplay."""
+
 import os
 import random
 import re
@@ -7,12 +8,12 @@ import time
 
 import pygame
 
-from config import *
+import config
 
 
 def resource_path(relative_path):
     """Get absolute path to resource, works for dev and for PyInstaller external assets."""
-    if getattr(sys, 'frozen', False):
+    if getattr(sys, "frozen", False):
         # Path to the directory where the binary executable is located
         base_path = os.path.dirname(sys.executable)
     else:
@@ -23,13 +24,13 @@ def resource_path(relative_path):
 
 def clear_screen():
     """Clears the console screen based on OS."""
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system("cls" if os.name == "nt" else "clear")
 
 
 def set_console_size(width=80, height=30):
     """Sets the console size."""
-    if os.name == 'nt':
-        os.system(f'mode con: cols={width} lines={height}')
+    if os.name == "nt":
+        os.system(f"mode con: cols={width} lines={height}")
     else:
         sys.stdout.write(f"\x1b[8;{height};{width}t")
 
@@ -66,14 +67,14 @@ def slow_print(text, delay=0.03):
 def start_game():
     """Game startup"""
     pygame.mixer.init()
-    
+
     # Set the Window Icon
     try:
         icon_img = pygame.image.load(resource_path(ICON))
         pygame.display.set_icon(icon_img)
     except Exception:
         pass
-        
+
     play_music(OST1)
     clear_screen()
     slow_print("Hello world!\n")
@@ -96,7 +97,9 @@ def game_menu():
     while playing:
         play_music(OST2)
         clear_screen()
-        print("MAIN MENU\n=======*=======*=======\n1 - Play \n2 - How to Play? \n3 - Credits\n4 - Exit\n")
+        print(
+            "MAIN MENU\n=======*=======*=======\n1 - Play \n2 - How to Play? \n3 - Credits\n4 - Exit\n"
+        )
         option = int(input("Enter a number from options above: "))
         if option == 1:  # Play game
             clear_screen()
@@ -107,12 +110,15 @@ def game_menu():
             manage_story(king)
         elif option == 2:  # How to play?
             clear_screen()
-            print("Game under construction.\n\n Story RPG is a role-playing-game where you create a story about a medieval quest to defend a kingdom.\n You will face decisions with consequences each time you see chapters rolling.\n All the gameplay is on command-line interface.\nFeel free to enjoy each character interaction with the scenario you will face.")
+            print(
+                "Game under construction.\n\n Story RPG is a role-playing-game where you create a story about a medieval quest to defend a kingdom.\n You will face decisions with consequences each time you see chapters rolling.\n All the gameplay is on command-line interface.\nFeel free to enjoy each character interaction with the scenario you will face."
+            )
             input("\n Press Enter to continue to main menu...")
         elif option == 3:  # Game credits
             clear_screen()
             print(
-                "Design: studTon\nSoundtrack by: Alex-Productions, Kevin MacLeod, mokasza & Freesound\nGame story: studTon")
+                "Design: studTon\nSoundtrack by: Alex-Productions, Kevin MacLeod, mokasza & Freesound\nGame story: studTon"
+            )
             input("\n Press Enter to continue to main menu...")
         elif option == 4:  # Exit
             clear_screen()
@@ -131,13 +137,13 @@ def define_king():
     while check is False:
         clear_screen()
         king = input("Enter a valid name for the king.\nKing's name: ")
-        match = re.search(r'^(?:[A-Z][a-z]+[-\s]?)+$', king)
+        match = re.search(r"^(?:[A-Z][a-z]+[-\s]?)+$", king)
         # If-statement after search() tests if it succeeded
         if match:
             check = True
             return king
         else:
-            slow_print('Input a valid name.')
+            slow_print("Input a valid name.")
             time.sleep(2.5)
 
 
@@ -157,7 +163,9 @@ def manage_story(king_name):
         if success:
             total_accumulated_score += score
             clear_screen()
-            slow_print(f"You have won with a total of {total_accumulated_score} points\n")
+            slow_print(
+                f"You have won with a total of {total_accumulated_score} points\n"
+            )
             slow_print("You're in lucky!\n")
             input("Press Enter to continue...")
     else:
@@ -176,14 +184,14 @@ def intro(name):
     slow_print("""Everyone was happy in the Kingdom of Joy.""")
     slow_print(f"This kingdom was ruled by {name}.")
     slow_print(
-        "The Kingdom of Joy was ruled with love and passion to serve other kingdoms.")
+        "The Kingdom of Joy was ruled with love and passion to serve other kingdoms."
+    )
     slow_print("The king was a noble man, and also his court and serfs.")
     input("Press Enter to continue...")
     selecting = False
     while selecting == False:
         clear_screen()
-        slow_print(
-            f"King {name} decided to invite his serfs to a great party.")
+        slow_print(f"King {name} decided to invite his serfs to a great party.")
         slow_print("It was a thanks giving party.")
         slow_print("He choose his...")
         slow_print("0 - Knight\n1 - Archer \n2 - Infantry \n3 - Crossbowman\n")
@@ -196,27 +204,34 @@ def intro(name):
             input("Press Enter to continue...")
     clear_screen()
     slow_print(
-        f"King {name} was really proud of his soldiers, because they serve him with honor.\n")
+        f"King {name} was really proud of his soldiers, because they serve him with honor.\n"
+    )
     slow_print(
-        "He asked: \"My noble serf, we will face an attack suddenly, please could you help me with this mission?\"")
+        'He asked: "My noble serf, we will face an attack suddenly, please could you help me with this mission?"'
+    )
     match rpg_character:
         case 0:
             slow_print(
-                "The Knight said: \"Of course, my liege. You can trust me for this mission.\"")
+                'The Knight said: "Of course, my liege. You can trust me for this mission."'
+            )
             input("Press Enter to continue...")
         case 1:
             slow_print(
-                "The Archer said: \"Of course, my liege. You can trust me for this mission.\"")
+                'The Archer said: "Of course, my liege. You can trust me for this mission."'
+            )
             input("Press Enter to continue...")
         case 2:
             slow_print(
-                "The Infantry said: \"Of course, my liege. You can trust me for this mission.\"")
+                'The Infantry said: "Of course, my liege. You can trust me for this mission."'
+            )
             input("Press Enter to continue...")
         case 3:
             slow_print(
-                "The Crossbowman said: \"Of course, my liege. You can trust me for this mission.\"")
+                'The Crossbowman said: "Of course, my liege. You can trust me for this mission."'
+            )
             input("Press Enter to continue...")
     return rpg_character
+
 
 def chapter_one(character):
     """Chapter one: The adventure begins"""
@@ -228,40 +243,51 @@ def chapter_one(character):
         case 0:
             character = "knight"
             slow_print(
-                "The Knight with his strong power mounted his horse and received his mission.\n")
+                "The Knight with his strong power mounted his horse and received his mission.\n"
+            )
             slow_print(
-                "He took the mission with joy, and is brave enough to face the enemy of the kingdom without mercy.\n")
+                "He took the mission with joy, and is brave enough to face the enemy of the kingdom without mercy.\n"
+            )
             input("Press Enter to continue...")
 
         case 1:
             character = "archer"
             slow_print(
-                "The Archer with his longbow prepared his bag of arrows to defend the kingdom from enemies.\n")
+                "The Archer with his longbow prepared his bag of arrows to defend the kingdom from enemies.\n"
+            )
             slow_print(
-                "He get prepared on the top of the tower. Over there he can fire the enemy with advantage.\n")
+                "He get prepared on the top of the tower. Over there he can fire the enemy with advantage.\n"
+            )
             input("Press Enter to continue...")
 
         case 2:
             character = "infantry"
             slow_print(
-                "The Infantry man followed his group of soldiers to defend the fortress.\n")
+                "The Infantry man followed his group of soldiers to defend the fortress.\n"
+            )
             slow_print(
-                "The infantry group get prepared to fight behind the walls of the fortress.\n")
-            slow_print(
-                "They scream with a loud voice: LONG LIVE THE KINGDOM!\n")
+                "The infantry group get prepared to fight behind the walls of the fortress.\n"
+            )
+            slow_print("They scream with a loud voice: LONG LIVE THE KINGDOM!\n")
             input("Press Enter to continue...")
 
         case 3:
             character = "crossbowman"
             slow_print(
-                "The Crossbowman got his crossbow to attack the foes with his bolts.\n")
+                "The Crossbowman got his crossbow to attack the foes with his bolts.\n"
+            )
             slow_print(
-                "Every time he saw a strange movement on the forest nearby, the bow can be used for an accurated shot.\n")
+                "Every time he saw a strange movement on the forest nearby, the bow can be used for an accurated shot.\n"
+            )
             input("Press Enter to continue...")
 
     clear_screen()
-    slow_print("The enemy general said with loud voice: \"The kingdom of Numberland has one thing to say to you all. Please, avoid any conflict.\"\n")
-    slow_print("\"It's easy to you surrender to our great army. Will you gonna face the siege? Think wisely, I recommend...\"\n")
+    slow_print(
+        'The enemy general said with loud voice: "The kingdom of Numberland has one thing to say to you all. Please, avoid any conflict."\n'
+    )
+    slow_print(
+        '"It\'s easy to you surrender to our great army. Will you gonna face the siege? Think wisely, I recommend..."\n'
+    )
 
     slow_print(f"Immediately, the {character} chose to?\n")
     print("0 - Stay on the tower (Low Risk)\n")
@@ -292,7 +318,8 @@ def chapter_one(character):
     if total_score >= difficulty:
         play_sound(SFX2)
         slow_print(
-            "VICTORY! Your strategy was successful. And you get some time to go back to the castle.")
+            "VICTORY! Your strategy was successful. And you get some time to go back to the castle."
+        )
         result = True
     else:
         play_sound(SFX1)
@@ -310,11 +337,14 @@ def chapter_two(character):
     clear_screen()
     slow_print("""CHAPTER TWO""")
     slow_print(
-        "The sunset was on the horizon and we could see the wind over the trees.\n")
+        "The sunset was on the horizon and we could see the wind over the trees.\n"
+    )
     slow_print(
-        "Suddenly, three army bands arrived on the top of a hill. They play a trumpet to announces the fight.\n")
+        "Suddenly, three army bands arrived on the top of a hill. They play a trumpet to announces the fight.\n"
+    )
     slow_print(
-        "\"The Kingdom of Numberland shall never surrender to your fortress and your garrison troops.\n")
+        '"The Kingdom of Numberland shall never surrender to your fortress and your garrison troops.\n'
+    )
     slow_print("Surrender or DIE!\n")
     input("Press Enter to continue...")
     clear_screen()
@@ -346,7 +376,8 @@ def chapter_two(character):
     if total_score >= difficulty:
         play_sound(SFX2)
         slow_print(
-            "VICTORY! Your strategy was successful. And you get some time to go back to the castle.")
+            "VICTORY! Your strategy was successful. And you get some time to go back to the castle."
+        )
         result = True
     else:
         play_sound(SFX1)
