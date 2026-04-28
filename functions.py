@@ -61,14 +61,13 @@ def slow_print(text, delay=0.03):
         time.sleep(delay)
     print()  # Print a newline at the end
 
-
 def start_game():
     """Game startup"""
     pygame.mixer.init()
 
     # Set the Window Icon
     try:
-        icon_img = pygame.image.load(resource_path(ICON))
+        icon_img = pygame.image.load(resource_path(config.ICON))
         pygame.display.set_icon(icon_img)
     except Exception:
         pass
@@ -91,7 +90,10 @@ def start_game():
 
 def create_user():
     """Create new user"""
-    print("create-user")
+    print("create-user\n")
+    users = json.load("db/users.json")
+    print(users)
+    time.sleep(3.0)
 
 def load_user():
     """Load user data"""
@@ -101,13 +103,10 @@ def define_user():
     """Define user name that will play the game"""
     slow_print("Do you already played this game?\n")
     option = input("0 - No\n1 - Yes\n")
-    if option == 0:
-        create_user()
-    else:
-        load_user()
+    match(option):
+        case 0: create_user()
+        case 1: load_user()
         
-
-
 
 def game_menu():
     """Game menu options"""
