@@ -283,15 +283,15 @@ def chapter_one(character):
     decision = int(input("Choose an option between 0 and 2: "))
 
     # Generate Stats
-    luck = random.randint(1, 5)
-    roll = random.randint(1, 10)
+    luck = random.randint(1, 6)
+    roll = random.randint(1, 6)
     total_score = roll + luck
 
     # Set Difficulty based on choice
     if decision == 0:
-        difficulty = 8
+        difficulty = 6
     elif decision == 1:
-        difficulty = 10
+        difficulty = 8
     else:
         difficulty = 12
 
@@ -299,8 +299,9 @@ def chapter_one(character):
     slow_print(f"\n[BATTLE] Difficulty: {difficulty}")
     slow_print(f"[BATTLE] You rolled: {roll} + {luck} (Luck) = {total_score}")
 
-    # Determine Outcome
+    input("Press Enter to continue...")
 
+    # Determine Outcome
     if total_score >= difficulty:
         play_sound(config.SFX2)
         slow_print(
@@ -343,17 +344,19 @@ def chapter_two(character):
     decision = int(input("Choose an option between 0 and 2: "))
 
     # Generate Stats
-    luck = random.randint(1, 5)
-    roll = random.randint(1, 10)
+    luck = random.randint(1, 6)
+    roll = random.randint(1, 6)
     total_score = roll + luck
 
     # Set Difficulty based on choice
     if decision == 0:
-        difficulty = 7
+        difficulty = 6
     elif decision == 1:
-        difficulty = 10
+        difficulty = 8
     else:
-        difficulty = 14
+        difficulty = 12
+
+    input("Press Enter to continue...")
 
     # Show Results
     slow_print(f"\n[BATTLE] Difficulty: {difficulty}")
