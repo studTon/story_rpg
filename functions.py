@@ -43,7 +43,7 @@ def play_music(track, loops=0, start=0.0, fade_ms=0):
 
 def play_sound(track):
     """Load and play a sound effect."""
-    if track == SFX3:
+    if track == config.SFX3:
         pygame.mixer.music.stop()
     try:
         sound = pygame.mixer.Sound(track)
@@ -72,7 +72,7 @@ def start_game():
     except Exception:
         pass
 
-    play_music(OST1)
+    play_music(config.OST1)
     clear_screen()
     slow_print("Hello world!\n")
     input("Press Enter to continue...")
@@ -81,7 +81,7 @@ def start_game():
     time.sleep(1.5)
     clear_screen()
     print("            ======= STORY RPG =======")
-    print(ART)
+    print(config.ART)
     time.sleep(3.0)
     input("Press Enter to continue...")
     clear_screen()
@@ -92,7 +92,7 @@ def game_menu():
     """Game menu options"""
     playing = True
     while playing:
-        play_music(OST2)
+        play_music(config.OST2)
         clear_screen()
         print(
             "MAIN MENU\n=======*=======*=======\n1 - Play \n2 - How to Play? \n3 - Credits\n4 - Exit\n"
@@ -102,7 +102,7 @@ def game_menu():
             clear_screen()
             clear_screen()
             pygame.mixer.music.stop()
-            play_music(OST3)
+            play_music(config.OST3)
             king = define_king()
             manage_story(king)
         elif option == 2:  # How to play?
@@ -232,7 +232,7 @@ def intro(name):
 
 def chapter_one(character):
     """Chapter one: The adventure begins"""
-    play_sound(SFX3)
+    play_sound(config.SFX3)
     clear_screen()
     slow_print("""CHAPTER ONE""")
     slow_print("")
@@ -313,13 +313,13 @@ def chapter_one(character):
     # Determine Outcome
 
     if total_score >= difficulty:
-        play_sound(SFX2)
+        play_sound(config.SFX2)
         slow_print(
             "VICTORY! Your strategy was successful. And you get some time to go back to the castle."
         )
         result = True
     else:
-        play_sound(SFX1)
+        play_sound(config.SFX1)
         slow_print("DEFEAT... The enemy overwhelmed you.")
         result = False
 
@@ -330,7 +330,7 @@ def chapter_one(character):
 
 def chapter_two(character):
     """Chapter two: The enemy arrives to siege the fortress."""
-    play_music(OST3)
+    play_music(config.OST3)
     clear_screen()
     slow_print("""CHAPTER TWO""")
     slow_print(
@@ -371,13 +371,13 @@ def chapter_two(character):
     slow_print(f"[BATTLE] You rolled: {roll} + {luck} (Luck) = {total_score}")
 
     if total_score >= difficulty:
-        play_sound(SFX2)
+        play_sound(config.SFX2)
         slow_print(
             "VICTORY! Your strategy was successful. And you get some time to go back to the castle."
         )
         result = True
     else:
-        play_sound(SFX1)
+        play_sound(config.SFX1)
         slow_print("DEFEAT... The enemy overwhelmed you.")
         result = False
 
