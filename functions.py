@@ -1,15 +1,12 @@
 """Functions used inside the gameplay."""
 
+import config
 import os
+import pygame
 import random
 import re
 import sys
 import time
-
-import pygame
-
-import config
-
 
 def resource_path(relative_path):
     """Get absolute path to resource, works for dev and for PyInstaller external assets."""
