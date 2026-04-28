@@ -1,7 +1,5 @@
 # Story RPG
 
----
-
 ## Description
 It is a simple Role-Playing-Game that shows the power of simple Python3 libraries and file management. It is originally built for Linux shell.
 
@@ -31,14 +29,13 @@ http://creativecommons.org/licenses/by/4.0/
 
 ## Libraries
 
+python json  
 python os  
 python pygame  
 python random  
-python re  
-python time  
-python sys
-
----
+python re    
+python sys  
+python time 
 
 ## License
 

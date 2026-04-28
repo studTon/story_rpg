@@ -1,6 +1,7 @@
 """Functions used inside the gameplay."""
 
 import config
+import json
 import os
 import pygame
 import random
@@ -85,7 +86,27 @@ def start_game():
     time.sleep(3.0)
     input("Press Enter to continue...")
     clear_screen()
+    define_user()
     game_menu()
+
+def create_user():
+    """Create new user"""
+    print("create-user")
+
+def load_user():
+    """Load user data"""
+    print("load-user")
+
+def define_user():
+    """Define user name that will play the game"""
+    slow_print("Do you already played this game?\n")
+    option = input("0 - No\n1 - Yes\n")
+    if option == 0:
+        create_user()
+    else:
+        load_user()
+        
+
 
 
 def game_menu():
