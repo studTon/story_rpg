@@ -77,7 +77,7 @@ def start_game():
     slow_print("Hello world!\n")
     input("Press Enter to continue...")
     clear_screen()
-    slow_print("This adventure game is called:")
+    slow_print("This role-playing game is called:")
     time.sleep(1.5)
     clear_screen()
     print("            ======= STORY RPG =======")
@@ -108,7 +108,7 @@ def game_menu():
         elif option == 2:  # How to play?
             clear_screen()
             print(
-                "Game under construction.\n\n Story RPG is a role-playing-game where you create a story about a medieval quest to defend a kingdom.\n You will face decisions with consequences each time you see chapters rolling.\n All the gameplay is on command-line interface.\nFeel free to enjoy each character interaction with the scenario you will face."
+                "Game under construction.\n\n Story RPG is a role-playing-game where you create a story about a medieval quest to defend a kingdom.\n You will face decisions with consequences each time you see chapters rolling.\n All the gameplay is on command-line interface.\nFeel free to enjoy each character interaction with the scenario you will face. In every decision you will face risks. If you pass, you will gain points until end level"
             )
             input("\n Press Enter to continue to main menu...")
         elif option == 3:  # Game credits
@@ -129,19 +129,8 @@ def game_menu():
 def define_king():
     """Write a name for the king"""
     slow_print("It's a story that begins a long time ago...")
-    time.sleep(2.5)
-    check = False
-    while check is False:
-        clear_screen()
-        king = input("Enter a valid name for the king.\nKing's name: ")
-        match = re.search(r"^(?:[A-Z][a-z]+[-\s]?)+$", king)
-        # If-statement after search() tests if it succeeded
-        if match:
-            check = True
-            return king
-        else:
-            slow_print("Input a valid name.")
-            time.sleep(2.5)
+    king = "Joshua"
+    return king
 
 
 def manage_story(king_name):
@@ -209,7 +198,7 @@ def intro(name):
     match rpg_character:
         case 0:
             slow_print(
-                'The Knight said: "Of course, my liege. You can trust me for this mission."'
+                'The Knight said: "My liege, it is an honor to serve."'
             )
             input("Press Enter to continue...")
         case 1:
@@ -219,12 +208,12 @@ def intro(name):
             input("Press Enter to continue...")
         case 2:
             slow_print(
-                'The Infantry said: "Of course, my liege. You can trust me for this mission."'
+                'The Infantry said: "Of course, my liege. The enemy shall face my blade."'
             )
             input("Press Enter to continue...")
         case 3:
             slow_print(
-                'The Crossbowman said: "Of course, my liege. You can trust me for this mission."'
+                'The Crossbowman said: "Lord, the will fear my bolts"'
             )
             input("Press Enter to continue...")
     return rpg_character
