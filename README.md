@@ -4,7 +4,7 @@
 It is a simple Role-Playing-Game that shows the power of simple Python3 libraries and file management. It is originally built for Linux shell.
 
 ## How to play the game?
-Unzip the compact folder and execute the shell script run.sh on game folder.
+Unzip the folder and execute the shell script run.sh. All chapters are made by your own decisions, and if you character survive it's upon your choices.
 
 ## Soundtrack
 
