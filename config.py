@@ -1,7 +1,7 @@
 """Configuration and assets for the game."""
 
 # Default character name (placeholder)
-CHARACTER_DEFAULT = "king name"
+CHARACTER_DEFAULT = "Joshua"
 
 # Sound Tracks
 OST1 = "ost/Majestic Hills.mp3"
