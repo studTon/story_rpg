@@ -66,11 +66,11 @@ def start_game():
     pygame.mixer.init()
 
     # Set the Window Icon
-    try:
-        icon_img = pygame.image.load(resource_path(config.ICON))
-        pygame.display.set_icon(icon_img)
-    except Exception:
-        pass
+    #try:
+    #    icon_img = pygame.image.load(resource_path(config.ICON))
+    #    pygame.display.set_icon(icon_img)
+    #except Exception:
+    #    pass
 
     play_music(config.OST1)
     clear_screen()
@@ -91,9 +91,9 @@ def start_game():
 def create_user():
     """Create new user"""
     print("create-user\n")
-    users = json.load("db/users.json")
-    print(users)
-    time.sleep(3.0)
+    with open("db/users.json", "r") as users_content:
+        print(json.load(users_content))
+    input("Press Enter to continue...")
 
 def load_user():
     """Load user data"""
@@ -102,10 +102,10 @@ def load_user():
 def define_user():
     """Define user name that will play the game"""
     slow_print("Do you already played this game?\n")
-    option = input("0 - No\n1 - Yes\n")
+    option = input("n - No\ny - Yes\n:::=>")
     match(option):
-        case 0: create_user()
-        case 1: load_user()
+        case "n": create_user()
+        case "y": load_user()
         
 
 def game_menu():
