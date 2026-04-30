@@ -149,7 +149,7 @@ def game_menu():
 def define_king():
     """Write a name for the king"""
     slow_print("It's a story that begins a long time ago...")
-    king = config.CHARACTER_DEFAULT
+    king = config.DEFAULT_KING
     return king
 
 
